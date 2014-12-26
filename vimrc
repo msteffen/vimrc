@@ -41,6 +41,7 @@ set ai
 set tabstop=2
 set shiftwidth=2
 set number
+set ruler
 
 hi ColorColumn ctermbg=Gray ctermfg=Black guibg=gray9
 " Highlight columns after 80. Someday, learn how to vary this with filetype
