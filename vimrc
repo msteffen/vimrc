@@ -42,10 +42,14 @@ set tabstop=2
 set shiftwidth=2
 set number
 
-hi ColorColumn ctermbg=Gray guibg=gray9
+hi ColorColumn ctermbg=Gray ctermfg=Black guibg=gray9
 " Highlight columns after 80. Someday, learn how to vary this with filetype
-set textwidth=80
-set colorcolumn=+1,+2
+" This is how I have it set up at work, but I don't like that textwidth
+" inserts newlines, so instead I leave textwidth off and set colorcolumn in
+" absolute terms
+"set textwidth=80
+"set colorcolumn=+1,+2
+set colorcolumn=81,82
 
 " Fix syntastic coloring that blends in with my highlight
 " See
