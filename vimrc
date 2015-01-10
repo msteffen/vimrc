@@ -1,4 +1,6 @@
 " Vundle configuration and packages
+" Set up Vundle with
+" git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 " See https://github.com/gmarik/Vundle.vim#about
 set nocompatible              " be iMproved, required
 filetype off                  " required
