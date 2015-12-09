@@ -10,14 +10,14 @@
 
 1. Installing YouCompleteMe
 
-```
-# Install build tools (only in a fresh VM with no build tools)
-> sudo apt-get install build-essential cmake python-dev
-> cd ~/.vim/bundle/YouCompleteMe
+    ```
+    # Install build tools (only in a fresh VM with no build tools)
+    > sudo apt-get install build-essential cmake python-dev
+    > cd ~/.vim/bundle/YouCompleteMe
 
-# omit --clang-completer if you don't care about C/C++ completion
-> ./install.sh --clang-completer
-```
+    # omit --clang-completer if you don't care about C/C++ completion
+    > ./install.sh --clang-completer
+    ```
 
 ### TODO
 * Put this setup in a script:
