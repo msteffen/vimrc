@@ -2,9 +2,9 @@
 
 1. Getting the vimrc file
 
-```
-curl https://raw.githubusercontent.com/msteffen/vimrc/master/vimrc >$HOME/.vimrc
-```
+    ```
+    curl https://raw.githubusercontent.com/msteffen/vimrc/master/vimrc >$HOME/.vimrc
+    ```
 
 1. Open vim and run `:PluginInstall` once. This should finish successfully; quit afterwards.
 
