@@ -22,6 +22,6 @@
 ### TODO
 * Put this setup in a script:
 
-```
-git https://github.com/msteffen/vimrc.git ~/vim_setup && ~/vim_setup/setup.sh
-```
+    ```
+    git https://github.com/msteffen/vimrc.git ~/vim_setup && ~/vim_setup/setup.sh
+    ```
