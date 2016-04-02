@@ -50,7 +50,7 @@ let g:multi_cursor_normal_maps = {
     \ '9':1
     \ }
 
-" All of your Plugins must be added before the following line
+" Highlight trailing whitespace
 call vundle#end()
 filetype plugin indent on    " required
                              " To ignore plugin indent changes, instead use:
@@ -63,6 +63,8 @@ set tabstop=2
 set shiftwidth=2
 set number
 set ruler
+" Replace tabs with spaces -- not always necessary
+set expandtab
 syntax on
 
 """ Autocommands and autogroups
