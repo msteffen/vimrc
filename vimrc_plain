@@ -24,15 +24,17 @@ augroup END
 
 augroup set_colorcolumn_on_filetype
   au!
-  " Run `:set filetype?` to the filetype for the current file
+  " Run `:set filetype?` to see the filetype for the current file
   au Filetype java set colorcolumn=101,102
   au Filetype cpp set colorcolumn=81,82
 augroup END
 
 augroup relative_number_in_normal_mode
   au!
-  au InsertEnter * :set norelativenumber
+  au InsertEnter * :set number
   au InsertLeave * :set relativenumber
+augroup END
+
 hi ColorColumn ctermbg=Gray ctermfg=Black guibg=gray9
 
 """ Search and highlighting
@@ -44,6 +46,8 @@ hi SpellCap ctermfg=Black ctermbg=Yellow
 " highlight all occurrences of a match (like emacs)
 hi Search ctermbg=DarkYellow
 set hlsearch
+" Highlight trailing whitespace
+match Search /\s\+$/
 
 " Type <space> to clear search highlighting
 nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
