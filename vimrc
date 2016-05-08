@@ -8,34 +8,9 @@ call vundle#begin()
 
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
-
-""" YouCompleteMe
-" YouCompleteMe (autocomplete)
-" Plugin 'Valloric/YouCompleteMe'
-
-""" Codefmt
-" Add maktaba and codefmt to the runtimepath. (The latter must be installed
-" before it can be used.)
-"
-" I haven't tried these out yet and am afraid to uncomment them, but they're
-" here as a quick reference
-"
-" Plugin 'google/vim-maktaba'
-" Plugin 'google/vim-codefmt'
-" " Also add Glaive, which is used to configure codefmt's maktaba flags. See
-" " `:help :Glaive` for usage.
-" Plugin 'google/vim-glaive'
-" call glaive#Install()
-
-""" Go extentions
-" Extra tools for go programming (including go.vim for syntax highlighting)
-" Plugin 'fatih/vim-go'
-" Set runtime path to include go vim extras
-" set rtp+=$GOROOT/misc/vim
-
-
+" Multiple Cursors
 Plugin 'terryma/vim-multiple-cursors'
-""" Multiple Cursors tweaks
+" (tweaks)
 " Typing ESC in insert or visual mode doesn't lose your cursors. You have to go
 " to normal mode to drop them
 let g:multi_cursor_exit_from_visual_mode=0
@@ -50,7 +25,11 @@ let g:multi_cursor_normal_maps = {
     \ '9':1
     \ }
 
-" Highlight trailing whitespace
+" Surround.vim (surround text with "([{' etc)
+Plugin 'tpope/vim-surround'
+" Repeat.vim (some plugins work with '.')
+Plugin 'tpope/vim-repeat'
+
 call vundle#end()
 filetype plugin indent on    " required
                              " To ignore plugin indent changes, instead use:
@@ -104,8 +83,34 @@ hi SpellCap ctermfg=Black ctermbg=Yellow
 " highlight all occurrences of a match (like emacs)
 hi Search ctermbg=DarkYellow
 set hlsearch
+
 " Highlight trailing whitespace
 match Search /\s\+$/
 
 " Type <space> to clear search highlighting
 nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
+
+""""" Optional (i.e. heavyweight) plugins """""
+""" YouCompleteMe
+" YouCompleteMe (autocomplete)
+" Plugin 'Valloric/YouCompleteMe'
+
+""" Codefmt
+" Add maktaba and codefmt to the runtimepath. (The latter must be installed
+" before it can be used.)
+"
+" I haven't tried these out yet and am afraid to uncomment them, but they're
+" here as a quick reference
+"
+" Plugin 'google/vim-maktaba'
+" Plugin 'google/vim-codefmt'
+" " Also add Glaive, which is used to configure codefmt's maktaba flags. See
+" " `:help :Glaive` for usage.
+" Plugin 'google/vim-glaive'
+" call glaive#Install()
+
+""" Go extentions
+" Extra tools for go programming (including go.vim for syntax highlighting)
+" Plugin 'fatih/vim-go'
+" Set runtime path to include go vim extras
+" set rtp+=$GOROOT/misc/vim
