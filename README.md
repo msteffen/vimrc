@@ -28,10 +28,9 @@ curl https://raw.githubusercontent.com/msteffen/vimrc/master/setup.sh | bash
     vim -c ":PluginInstall" -c ":qa"
     ```
 
-1. Installing YouCompleteMe
-    Uncomment the line `" Plugin 'Valloric/YouCompleteMe'` in vimrc. Then run:
+See below for installing YouCompleteMe
 
-#### Installing YCM
+#### Installing YouCompleteMe
 
 By default, YouCompleteMe isn't installed by my .vimrc file (the "Plugin" line for YCM is commented out, at the bottom). If you want to use it, you'll need to put it in the vundle section at the top, and re-run `vim -c ":PluginInstall" -c ":qa"`. Then, you'll need to run the install script it downloads:
 
