@@ -1,9 +1,19 @@
 ### Installation
 
+#### Approach 1: Run the setup script:
+
+    ```
+    curl https://raw.githubusercontent.com/msteffen/vimrc/master/setup.sh | bash
+    ```
+
+(see "Installing YCM" if you want YouCompleteMe as well)
+
+#### Approach 2: Manual setup
+
 1. Getting the vimrc file
 
     ```
-    curl https://raw.githubusercontent.com/msteffen/vimrc/master/vimrc >$HOME/.vimrc
+    curl https://raw.githubusercontent.com/msteffen/vimrc/master/setup.sh | bash
     ```
 
 1. Set up Vundle. See See <https://github.com/gmarik/Vundle.vim#about>
@@ -12,18 +22,26 @@
     git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
     ```
 
-1. Open vim and run `:PluginInstall` once. This should finish successfully; quit afterwards.
+1. Run the following in bash:
+
+    ```
+    vim -c ":PluginInstall" -c ":qa"
+    ```
 
 1. Installing YouCompleteMe
     Uncomment the line `" Plugin 'Valloric/YouCompleteMe'` in vimrc. Then run:
 
+#### Installing YCM
+
+By default, YouCompleteMe isn't installed by my .vimrc file (the "Plugin" line for YCM is commented out, at the bottom). If you want to use it, you'll need to put it in the vundle section at the top, and re-run `vim -c ":PluginInstall" -c ":qa"`. Then, you'll need to run the install script it downloads:
+
     ```
     # Install build tools (only in a fresh VM with no build tools)
-    > sudo apt-get install build-essential cmake python-dev
-    > cd ~/.vim/bundle/YouCompleteMe
+    $ sudo apt-get install build-essential cmake python-dev python3-dev
+    $ cd ~/.vim/bundle/YouCompleteMe
 
     # omit --clang-completer if you don't care about C/C++ completion
-    > ./install.sh --clang-completer
+    $ ./install.sh --clang-completer
     ```
 
 ### Cleanup
