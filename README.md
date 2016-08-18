@@ -13,7 +13,7 @@ curl https://raw.githubusercontent.com/msteffen/vimrc/master/setup.sh | bash
 1. Getting the vimrc file
 
     ```
-    curl https://raw.githubusercontent.com/msteffen/vimrc/master/setup.sh | bash
+    curl https://raw.githubusercontent.com/msteffen/vimrc/master/vimrc >~/.vimrc
     ```
 
 1. Set up Vundle. See See <https://github.com/gmarik/Vundle.vim#about>
