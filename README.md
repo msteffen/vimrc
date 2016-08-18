@@ -2,9 +2,9 @@
 
 #### Approach 1: Run the setup script:
 
-    ```
-    curl https://raw.githubusercontent.com/msteffen/vimrc/master/setup.sh | bash
-    ```
+```
+curl https://raw.githubusercontent.com/msteffen/vimrc/master/setup.sh | bash
+```
 
 (see "Installing YCM" if you want YouCompleteMe as well)
 
