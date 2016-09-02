@@ -1,5 +1,7 @@
 #!/bin/bash
 
+which git || { sudo apt install git; }
+
 # Copy Vundle & create YCM directory
 curl https://raw.githubusercontent.com/msteffen/vimrc/master/vimrc >~/.vimrc
 git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
