@@ -42,6 +42,7 @@ set tabstop=2
 set shiftwidth=2
 set number
 set ruler
+set relativenumber
 " Replace tabs with spaces -- not always necessary
 set expandtab
 syntax on
