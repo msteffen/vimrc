@@ -39,7 +39,6 @@ By default, YouCompleteMe isn't installed by my .vimrc file (the "Plugin" line f
     $ sudo apt install build-essential cmake python-dev python3-dev
     
     # Install build tools (only in a fresh VM with no build tools)
-    $ sudo apt-get install build-essential cmake python-dev python3-dev
     $ cd ~/.vim/bundle/YouCompleteMe
 
     # omit --clang-completer if you don't care about C/C++ completion
