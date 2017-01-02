@@ -5,7 +5,7 @@ set smartindent
 set ai
 set tabstop=2
 set shiftwidth=2
-set number
+set relativenumber
 set ruler
 " Replace tabs with spaces -- not always necessary
 set expandtab
