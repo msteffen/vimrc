@@ -64,7 +64,7 @@ augroup set_colorcolumn_on_filetype
   au!
   " Run `:set filetype?` to see the filetype for the current file
   au Filetype java set colorcolumn=101,102
-  au Filetype cpp set colorcolumn=81,82
+  au Filetype cpp,go,proto set colorcolumn=81,82
 augroup END
 
 augroup relative_number_in_normal_mode
@@ -112,6 +112,7 @@ nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
 
 """ Go extentions
 " Extra tools for go programming (including go.vim for syntax highlighting)
+" (Make sure to run :GoInstallBinaries if you install this)
 " Plugin 'fatih/vim-go'
 " Set runtime path to include go vim extras
 " set rtp+=$GOROOT/misc/vim
