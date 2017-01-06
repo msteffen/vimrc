@@ -28,7 +28,7 @@ augroup set_colorcolumn_on_filetype
   au!
   " Run `:set filetype?` to see the filetype for the current file
   au Filetype java set colorcolumn=101,102
-  au Filetype cpp set colorcolumn=81,82
+  au Filetype cpp,go,proto set colorcolumn=81,82
 augroup END
 
 augroup relative_number_in_normal_mode
