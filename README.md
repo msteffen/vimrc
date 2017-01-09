@@ -36,7 +36,7 @@ By default, YouCompleteMe isn't installed by my .vimrc file (the "Plugin" line f
 
     ```
     # Install build dependencies
-    $ sudo apt install build-essential cmake python-dev python3-dev
+    $ sudo apt install -y build-essential cmake python-dev python3-dev
     
     # Install build tools (only in a fresh VM with no build tools)
     $ cd ~/.vim/bundle/YouCompleteMe
