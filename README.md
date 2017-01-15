@@ -35,8 +35,11 @@ See below for installing YouCompleteMe
 By default, YouCompleteMe isn't installed by my .vimrc file (the "Plugin" line for YCM is commented out, at the bottom). If you want to use it, you'll need to put it in the vundle section at the top, and re-run `vim -c ":PluginInstall" -c ":qa"`. Then, you'll need to run the install script it downloads:
 
     ```
+    # Put YCM plugin section at the top of .vimrc
+    $ vim -c ":PluginInstall" -c ":qa"
+    
     # Install build dependencies
-    $ sudo apt install -y build-essential cmake python-dev python3-dev
+    $ sudo apt update && sudo apt install -y build-essential cmake python-dev python3-dev
     
     # Install build tools (only necessary in a fresh VM with no build tools)
     # omit --clang-completer if you don't care about C/C++ completion
