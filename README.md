@@ -35,7 +35,7 @@ See below for installing YouCompleteMe
 By default, YouCompleteMe isn't installed by my .vimrc file (the "Plugin" line for YCM is commented out, at the bottom). If you want to use it, you'll need to put it in the vundle section at the top, and re-run `vim -c ":PluginInstall" -c ":qa"`. Then, you'll need to run the install script it downloads:
 
     ```
-    # Put YCM plugin section at the top of .vimrc
+    # Put YCM plugin section at the top of .vimrc, then run:
     $ vim -c ":PluginInstall" -c ":qa"
     
     # Install build dependencies
