@@ -5,11 +5,17 @@ set smartindent
 set ai
 set tabstop=2
 set shiftwidth=2
-set relativenumber
+set number
 set ruler
+set relativenumber
 " Replace tabs with spaces -- not always necessary
 set expandtab
 syntax on
+
+" Don't unindent comments in python
+" TODO: install pep8 indentation rules for python
+" See https://stackoverflow.com/questions/2360249/vim-automatically-removes-indentation-on-python-comments#comment12772473_2360284
+au Filetype python inoremap # X<BS>#
 
 """ Autocommands and autogroups
 augroup format_on_write
@@ -19,7 +25,7 @@ augroup format_on_write
   au!
   " Commands executed before writing a buffer to a file.
   " Clean up all trailing whitespace
-  au BufWritePre *.cc,*.h,*.java,*.py,*.go,*.md,*.sh silent! %s/[ 	]\+$//g
+  au BufWritePre *.cc,*.h,*.java,*.py,*.go,*.md,*.sh,*.json,*.proto silent! %s/[ 	]\+$//g
   " This is a good place to put autoformatting
   " For example: `au FileType markdown AutoFormatBuffer mdformat`
 augroup END
@@ -28,7 +34,7 @@ augroup set_colorcolumn_on_filetype
   au!
   " Run `:set filetype?` to see the filetype for the current file
   au Filetype java set colorcolumn=101,102
-  au Filetype cpp,go,proto set colorcolumn=81,82
+  au Filetype cpp,python,go,proto set colorcolumn=81,82
 augroup END
 
 augroup relative_number_in_normal_mode
@@ -40,16 +46,18 @@ augroup END
 hi ColorColumn ctermbg=Gray ctermfg=Black guibg=gray9
 
 """ Search and highlighting
-" Fix syntastic coloring that blends in with my highlight
-" http://stackoverflow.com/questions/17677441/changing-error-highlight-color-used-by-syntasti
 hi SpellBad ctermfg=Black ctermbg=Red
 hi SpellCap ctermfg=Black ctermbg=Yellow
 
 " highlight all occurrences of a match (like emacs)
 hi Search ctermbg=DarkYellow
+" Search terms stay highlighted after search is done, until I move the cursor
 set hlsearch
-" Highlight trailing whitespace
-match Search /\s\+$/
-
 " Type <space> to clear search highlighting
 nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
+" Search is case-insensitive, unless it contains uppercase letters
+set ignorecase
+set smartcase
+
+" Highlight trailing whitespace
+match Search /\s\+$/
