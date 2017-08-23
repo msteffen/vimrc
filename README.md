@@ -49,6 +49,6 @@ Just open vim and run `:PluginClean`. See `:help vundle` for more options (run `
 * Put this setup in a script:
 
    ```
-   git https://github.com/msteffen/vimrc.git ~/vim_setup && ~/vim_setup/setup.sh
+   git clone https://github.com/msteffen/vimrc.git ~/vim_setup && ~/vim_setup/setup.sh
    ```
     
