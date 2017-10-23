@@ -40,7 +40,7 @@ filetype plugin indent on    " required
                              " `filetype plugin on`
 
 """ General options
-colorscheme pablo
+colorscheme ron
 set smartindent
 set ai
 set tabstop=2
