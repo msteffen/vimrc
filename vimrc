@@ -40,6 +40,7 @@ filetype plugin indent on    " required
                              " `filetype plugin on`
 
 """ General options
+colorscheme pablo
 set smartindent
 set ai
 set tabstop=2
@@ -107,8 +108,6 @@ set smartcase
 
 " Highlight trailing whitespace
 match Search /\s\+$/
-
-
 
 """"" Optional (i.e. heavyweight) plugins """""
 """Syntastic error highlighting
