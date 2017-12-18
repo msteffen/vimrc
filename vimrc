@@ -109,28 +109,21 @@ set smartcase
 " Highlight trailing whitespace
 match Search /\s\+$/
 
+
 """"" Optional (i.e. heavyweight) plugins """""
-"""Syntastic error highlighting
+""" Git extensions (only useful if working with git)
+" fugitive.vim (Git plugin for vim)
+Plugin 'tpope/vim-fugitive'
+
+""" Error highlighting
+" Syntastic: error highlighting
 Plugin 'vim-syntastic/syntastic'
 
 """ YouCompleteMe
+" YCM must be independently compiled before it can be used.
 " See github.com/msteffen/vimrc/README.md for additional installation steps
 " YouCompleteMe (autocomplete)
 " Plugin 'Valloric/YouCompleteMe'
-
-""" Codefmt
-" Add maktaba and codefmt to the runtimepath. (The latter must be installed
-" before it can be used.)
-"
-" I haven't tried these out yet and am afraid to uncomment them, but they're
-" here as a quick reference
-"
-" Plugin 'google/vim-maktaba'
-" Plugin 'google/vim-codefmt'
-" " Also add Glaive, which is used to configure codefmt's maktaba flags. See
-" " `:help :Glaive` for usage.
-" Plugin 'google/vim-glaive'
-" call glaive#Install()
 
 """ Go extentions (place this in the vundle section)
 " Extra tools for go programming (including go.vim for syntax highlighting)
