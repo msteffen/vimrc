@@ -40,7 +40,7 @@ By default, YouCompleteMe isn't installed by my .vimrc file (the "Plugin" line f
     
     # Install build tools (only necessary in a fresh VM with no build tools)
     # omit --clang-completer if you don't care about C/C++ completion
-    $ ( cd ~/.vim/bundle/YouCompleteMe && ./install.sh --clang-completer )
+    $ ( cd ~/.vim/bundle/YouCompleteMe && ./install.py --clang-completer )
 
 ### Cleanup
 Just open vim and run `:PluginClean`. See `:help vundle` for more options (run `:PluginList` to see current plugins)
