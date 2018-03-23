@@ -113,11 +113,11 @@ match Search /\s\+$/
 """"" Optional (i.e. heavyweight) plugins """""
 """ Git extensions (only useful if working with git)
 " fugitive.vim (Git plugin for vim)
-Plugin 'tpope/vim-fugitive'
+" Plugin 'tpope/vim-fugitive'
 
 """ Error highlighting
 " Syntastic: error highlighting
-Plugin 'vim-syntastic/syntastic'
+" Plugin 'vim-syntastic/syntastic'
 
 """ YouCompleteMe
 " YCM must be independently compiled before it can be used.
