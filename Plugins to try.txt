@@ -1,0 +1,6 @@
+https://github.com/junegunn/fzf
+https://github.com/airblade/vim-gitgutter
+airline
+
+Also try replacing vundle (which isn't being maintained) with Plug:
+https://jordaneldredge.com/blog/why-i-switched-from-vundle-to-plug/
