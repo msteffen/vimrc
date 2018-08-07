@@ -33,7 +33,12 @@ Plugin 'tpope/vim-repeat'
 Plugin 'ctrlpvim/ctrlp.vim'
 " Incremental search
 Plugin 'haya14busa/incsearch.vim'
-
+" fugitive.vim (Git plugin for vim)
+Plugin 'tpope/vim-fugitive'
+" GitGutter (displays git changes)
+Plugin 'airblade/vim-gitgutter'
+" Airline
+Plugin 'vim-airline/vim-airline'
 call vundle#end()
 filetype plugin indent on    " required
                              " To ignore plugin indent changes, instead use:
@@ -48,6 +53,7 @@ set shiftwidth=2
 set number
 set ruler
 set relativenumber
+set mmp=10000 " Avoids bug where syntax highlighting large go files can fail
 " Replace tabs with spaces -- not always necessary
 set expandtab
 syntax on
@@ -65,7 +71,7 @@ augroup format_on_write
   au!
   " Commands executed before writing a buffer to a file.
   " Clean up all trailing whitespace
-  au BufWritePre *.cc,*.h,*.java,*.py,*.go,*.md,*.sh,*.json,*.proto silent! %s/[ 	]\+$//g
+  au BufWritePre .bashrc,*.cc,*.h,*.java,*.py,*.go,*.md,*.sh,*.json,*.proto silent! %s/[ 	]\+$//g
   " This is a good place to put autoformatting
   " For example: `au FileType markdown AutoFormatBuffer mdformat`
 augroup END
@@ -81,6 +87,20 @@ augroup relative_number_in_normal_mode
   au!
   au InsertEnter * :set number
   au InsertLeave * :set relativenumber
+augroup END
+
+" This is a function I added specifically to help when working on Pachyderm
+" tests. Clients have a context, and often in tests I have to call
+" abcClient.DoSomething(abc.Ctx(), ...). A common mistake I make in tests is:
+" abcClient.DoSomething(def.Ctx(), ...) (typically a copy/paste error). This
+" autocommand catches those types of errors
+function! Highlight_silly_ctx_error()
+  hi Error ctermbg=Red
+  match Error /\(\<[a-z]\w\+\)\.[A-Z]\w\+(\(\1\)\@!\w\+\.Ctx()/
+endfunction
+augroup catch_mismatched_ctx_errors_go
+  au!
+  au Filetype go call Highlight_silly_ctx_error()
 augroup END
 
 hi ColorColumn ctermbg=Gray ctermfg=Black guibg=gray9
@@ -129,6 +149,7 @@ match Search /\s\+$/
 " Extra tools for go programming (including go.vim for syntax highlighting)
 " (Make sure to run :GoInstallBinaries if you install this)
 " Plugin 'fatih/vim-go'
+
 """ Go options (place these at the end of the file, after vundle#end())
 " let g:go_fmt_command = "goimports"
 " let g:syntastic_go_checkers = ['go', 'golint', 'govet -composites=false', 'errcheck']
