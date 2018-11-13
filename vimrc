@@ -31,8 +31,6 @@ Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-repeat'
 " ctrlp - fuzzy file finder, etc
 Plugin 'ctrlpvim/ctrlp.vim'
-" Incremental search
-Plugin 'haya14busa/incsearch.vim'
 " fugitive.vim (Git plugin for vim)
 Plugin 'tpope/vim-fugitive'
 " GitGutter (displays git changes)
@@ -45,7 +43,6 @@ filetype plugin indent on    " required
                              " `filetype plugin on`
 
 """ General options
-colorscheme ron
 set smartindent
 set ai
 set tabstop=2
@@ -56,6 +53,7 @@ set relativenumber
 set mmp=10000 " Avoids bug where syntax highlighting large go files can fail
 " Replace tabs with spaces -- not always necessary
 set expandtab
+set incsearch
 syntax on
 
 " Don't unindent comments in python
@@ -91,8 +89,8 @@ augroup END
 
 " This is a function I added specifically to help when working on Pachyderm
 " tests. Clients have a context, and often in tests I have to call
-" abcClient.DoSomething(abc.Ctx(), ...). A common mistake I make in tests is:
-" abcClient.DoSomething(def.Ctx(), ...) (typically a copy/paste error). This
+" alice.DoSomething(alice.Ctx(), ...). A common mistake I make in tests is:
+" alice.DoSomething(bob.Ctx(), ...) (typically a copy/paste error). This
 " autocommand catches those types of errors
 function! Highlight_silly_ctx_error()
   hi Error ctermbg=Red
@@ -104,12 +102,6 @@ augroup catch_mismatched_ctx_errors_go
 augroup END
 
 hi ColorColumn ctermbg=Gray ctermfg=Black guibg=gray9
-
-""" Search and highlighting
-" Override default search with incsearch plugin
-map /  <Plug>(incsearch-forward)
-map ?  <Plug>(incsearch-backward)
-map g/ <Plug>(incsearch-stay)
 
 " Fix syntastic coloring that blends in with my highlight
 " http://stackoverflow.com/questions/17677441/changing-error-highlight-color-used-by-syntasti

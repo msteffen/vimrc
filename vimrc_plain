@@ -10,6 +10,7 @@ set ruler
 set relativenumber
 " Replace tabs with spaces -- not always necessary
 set expandtab
+set incsearch
 syntax on
 
 " Don't unindent comments in python
@@ -25,7 +26,7 @@ augroup format_on_write
   au!
   " Commands executed before writing a buffer to a file.
   " Clean up all trailing whitespace
-  au BufWritePre *.cc,*.h,*.java,*.py,*.go,*.md,*.sh,*.json,*.proto silent! %s/[ 	]\+$//g
+  au BufWritePre .bashrc,*.cc,*.h,*.java,*.py,*.go,*.md,*.sh,*.json,*.proto silent! %s/[ 	]\+$//g
   " This is a good place to put autoformatting
   " For example: `au FileType markdown AutoFormatBuffer mdformat`
 augroup END
