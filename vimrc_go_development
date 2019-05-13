@@ -76,7 +76,8 @@ augroup format_on_write
   au!
   " Commands executed before writing a buffer to a file.
   " Clean up all trailing whitespace
-  au BufWritePre .bashrc,*.cc,*.h,*.java,*.py,*.go,*.md,*.sh,*.json,*.proto silent! %s/[ 	]\+$//g
+  " Note: trailing whitespace is meaningful in markdown
+  au BufWritePre .bashrc,*.cc,*.h,*.java,*.py,*.go,*.sh,*.json,*.proto silent! %s/[ 	]\+$//g
   " This is a good place to put autoformatting
   " For example: `au FileType markdown AutoFormatBuffer mdformat`
 augroup END
@@ -84,8 +85,14 @@ augroup END
 augroup set_colorcolumn_on_filetype
   au!
   " Run `:set filetype?` to see the filetype for the current file
-  au Filetype java set colorcolumn=101,102
-  au Filetype markdown,cpp,python,go,proto set colorcolumn=81,82
+  au Filetype java set colorcolumn=101,102 | set textwidth=100
+  au Filetype cpp,python,go,proto set colorcolumn=81,82 | set textwidth=80
+  au Filetype sh set colorcolumn=81,82 " Don't set textwidth--bash is harder to wrap
+augroup END
+
+augroup set_soft_wrap_on_markdown
+  au!
+  au Filetype markdown set wrap linebreak nolist
 augroup END
 
 augroup relative_number_in_normal_mode
@@ -106,6 +113,15 @@ endfunction
 augroup catch_mismatched_ctx_errors_go
   au!
   au Filetype go call Highlight_silly_ctx_error()
+augroup END
+
+function! Highlight_pc_kc()
+  hi Error ctermbg=Red
+  match Error /pc\|kc/
+endfunction
+augroup catch_abbrevs_bash
+  au!
+  au Filetype sh call Highlight_pc_kc()
 augroup END
 
 hi ColorColumn ctermbg=Gray ctermfg=Black guibg=gray9
