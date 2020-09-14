@@ -28,7 +28,10 @@ Plugin 'fatih/vim-go'
 " YouCompleteMe (autocomplete)
 Plugin 'Valloric/YouCompleteMe'
 " Syntastic: error highlighting
-Plugin 'vim-syntastic/syntastic'
+" Plugin 'vim-syntastic/syntastic'
+
+" For matching parentheses I think?
+Plugin 'andymass/vim-matchup'
 call vundle#end()
 filetype plugin indent on    " required
                              " To ignore plugin indent changes, instead use:
@@ -53,6 +56,10 @@ syntax on
 " TODO: install pep8 indentation rules for python
 " See https://stackoverflow.com/questions/2360249/vim-automatically-removes-indentation-on-python-comments#comment12772473_2360284
 au Filetype python inoremap # X<BS>#
+
+" Add C-k shortcut for vim-matchup, to show which conditional block you're in
+" in heavily-nested code
+nnoremap <c-k> :<c-u>MatchupWhereAmI?<cr>
 
 """ Autocommands and autogroups
 augroup format_on_write
@@ -99,7 +106,7 @@ endfunction
 augroup catch_mismatched_ctx_errors_go
   au!
   au BufRead /home/mjs/clients/**.go
-        \ echom "in pachyderm go file"
+        \ echom "In pachyderm go file"
   au BufRead /home/mjs/clients/**.go
         \ call Highlight_silly_ctx_error()
   au BufRead /home/mjs/clients/**.go
