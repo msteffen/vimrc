@@ -29,7 +29,7 @@ augroup format_on_write
   " Commands executed before writing a buffer to a file.
   " Clean up all trailing whitespace
   " Note: trailing whitespace is meaningful in markdown
-  au BufWritePre .bashrc,*.cc,*.h,*.java,*.py,*.go,*.sh,*.json,*.proto silent! %s/[ 	]\+$//g
+  au BufWritePre .bashrc,*.cc,*.h,*.java,*.py,*.go,*.sh,*.json,*.proto,*.js silent! %s/[ 	]\+$//g
   " This is a good place to put autoformatting
   " For example: `au FileType markdown AutoFormatBuffer mdformat`
 augroup END
@@ -38,7 +38,7 @@ augroup set_colorcolumn_on_filetype
   au!
   " Run `:set filetype?` to see the filetype for the current file
   au Filetype java set colorcolumn=101,102 | set textwidth=100
-  au Filetype cpp,python,go,proto set colorcolumn=81,82 | set textwidth=80
+  au Filetype cpp,python,go,proto,rust set colorcolumn=81,82 | set textwidth=80
   au Filetype sh set colorcolumn=81,82 " Don't set textwidth--bash is harder to wrap
 augroup END
 
@@ -51,6 +51,15 @@ augroup relative_number_in_normal_mode
   au!
   au InsertEnter * :set number
   au InsertLeave * :set relativenumber
+augroup END
+
+function! Highlight_pc_kc()
+  hi Error ctermbg=Red
+  match Error /pc\|kc/
+endfunction
+augroup catch_abbrevs_bash
+  au!
+  au Filetype sh call Highlight_pc_kc()
 augroup END
 
 hi ColorColumn ctermbg=Gray ctermfg=Black guibg=gray9

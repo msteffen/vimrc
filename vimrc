@@ -10,20 +10,6 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 " Multiple Cursors
 Plugin 'terryma/vim-multiple-cursors'
-" (tweaks)
-" Typing ESC in insert or visual mode doesn't lose your cursors. You have to go
-" to normal mode to drop them
-let g:multi_cursor_exit_from_visual_mode=0
-let g:multi_cursor_exit_from_insert_mode=0
-" Make numbers work when replaying normal mode commands for multiple cursors
-" This is the default value (as documented on terryma's github page) plus the
-" digits
-let g:multi_cursor_normal_maps = {
-    \ '!':1, '@':1, '=':1, 'q':1, 'r':1, 't':1, 'T':1, 'y':1, '[':1, ']':1,
-    \ '\':1, 'd':1, 'f':1, 'F':1, 'g':1, '"':1, 'z':1, 'c':1, 'm':1, '<':1,
-    \ '>':1, '0':1, '1':1, '2':1, '3':1, '4':1, '5':1, '6':1, '7':1, '8':1,
-    \ '9':1
-    \ }
 
 " Surround.vim (surround text with "([{' etc)
 Plugin 'tpope/vim-surround'
@@ -37,6 +23,21 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'airblade/vim-gitgutter'
 " Airline
 Plugin 'vim-airline/vim-airline'
+" Go extentions
+Plugin 'fatih/vim-go'
+" YouCompleteMe (autocomplete)
+Plugin 'Valloric/YouCompleteMe'
+" Syntastic: error highlighting
+" Plugin 'vim-syntastic/syntastic'
+
+" For matching parentheses I think?
+Plugin 'andymass/vim-matchup'
+" Typescript syntax highlighting
+Plugin 'HerringtonDarkholme/yats.vim'
+" Plugin for editing latex
+Plugin 'lervag/vimtex'
+" Plugin for snippets
+Plugin 'SirVer/ultisnips'
 call vundle#end()
 filetype plugin indent on    " required
                              " To ignore plugin indent changes, instead use:
@@ -62,6 +63,10 @@ syntax on
 " See https://stackoverflow.com/questions/2360249/vim-automatically-removes-indentation-on-python-comments#comment12772473_2360284
 au Filetype python inoremap # X<BS>#
 
+" Add C-k shortcut for vim-matchup, to show which conditional block you're in
+" in heavily-nested code
+nnoremap <c-k> :<c-u>MatchupWhereAmI?<cr>
+
 """ Autocommands and autogroups
 augroup format_on_write
   " au is just short form for autocmd. Like :w and :write. :au! clears other
@@ -71,7 +76,7 @@ augroup format_on_write
   " Commands executed before writing a buffer to a file.
   " Clean up all trailing whitespace
   " Note: trailing whitespace is meaningful in markdown
-  au BufWritePre .bashrc,*.cc,*.h,*.java,*.py,*.go,*.sh,*.json,*.proto silent! %s/[ 	]\+$//g
+  au BufWritePre .bashrc,*.cc,*.h,*.java,*.py,*.go,*.sh,*.json,*.proto,*.js silent! %s/[ 	]\+$//g
   " This is a good place to put autoformatting
   " For example: `au FileType markdown AutoFormatBuffer mdformat`
 augroup END
@@ -80,7 +85,7 @@ augroup set_colorcolumn_on_filetype
   au!
   " Run `:set filetype?` to see the filetype for the current file
   au Filetype java set colorcolumn=101,102 | set textwidth=100
-  au Filetype cpp,python,go,proto set colorcolumn=81,82 | set textwidth=80
+  au Filetype cpp,python,go,proto,rust set colorcolumn=81,82 | set textwidth=80
   au Filetype sh set colorcolumn=81,82 " Don't set textwidth--bash is harder to wrap
 augroup END
 
@@ -138,31 +143,60 @@ set smartcase
 " Highlight trailing whitespace
 match Search /\s\+$/
 
+""" Vim surround options
+" (tweaks)
+" Typing ESC in insert or visual mode doesn't lose your cursors. You have to go
+" to normal mode to drop them
+let g:multi_cursor_exit_from_visual_mode=0
+let g:multi_cursor_exit_from_insert_mode=0
+" Make numbers work when replaying normal mode commands for multiple cursors
+" This is the default value (as documented on terryma's github page) plus the
+" digits
+let g:multi_cursor_normal_maps = {
+    \ '!':1, '@':1, '=':1, 'q':1, 'r':1, 't':1, 'T':1, 'y':1, '[':1, ']':1,
+    \ '\':1, 'd':1, 'f':1, 'F':1, 'g':1, '"':1, 'z':1, 'c':1, 'm':1, '<':1,
+    \ '>':1, '0':1, '1':1, '2':1, '3':1, '4':1, '5':1, '6':1, '7':1, '8':1,
+    \ '9':1
+    \ }
 
-""""" Optional (i.e. heavyweight) plugins """""
-""" Git extensions (only useful if working with git)
-" fugitive.vim (Git plugin for vim)
-" Plugin 'tpope/vim-fugitive'
-
-""" Error highlighting
-" Syntastic: error highlighting
-" Plugin 'vim-syntastic/syntastic'
-
-""" YouCompleteMe
-" YCM must be independently compiled before it can be used.
-" See github.com/msteffen/vimrc/README.md for additional installation steps
-" YouCompleteMe (autocomplete)
-" Plugin 'Valloric/YouCompleteMe'
-
-""" Go extentions (place this in the vundle section)
-" Extra tools for go programming (including go.vim for syntax highlighting)
-" (Make sure to run :GoInstallBinaries if you install this)
-" Plugin 'fatih/vim-go'
-
-""" Go options (place these at the end of the file, after vundle#end())
+""" Go options
 " let g:go_fmt_command = "goimports"
 " let g:syntastic_go_checkers = ['go', 'golint', 'govet -composites=false', 'errcheck']
-" let g:syntastic_go_checkers = ['golint', 'govet -composites=false', 'errcheck']
-" let g:syntastic_check_on_wq = 0  " Normally syntastic checks on writes, but don't check on 'wq'
-" let g:go_list_type = "quickfix"
-" let g:go_autodetect_gopath = 0 " For some reason, if I don't set this, my GOPATH is modified and imports fail to resolve
+let g:syntastic_go_checkers = ['golint', 'govet -composites=false', 'errcheck']
+let g:syntastic_check_on_wq = 0  " Normally syntastic checks on writes, but don't check on 'wq'
+let g:go_list_type = "quickfix"
+let g:go_autodetect_gopath = 0 " For some reason, if I don't set this, my GOPATH is modified and imports fail to resolve
+
+""" LaTeX options
+let g:tex_flavor='latex'
+let g:vimtex_view_method='zathura'
+let g:vimtex_quickfix_mode=0
+set conceallevel=1
+let g:tex_conceal='abdmg'
+
+""" Ultisnips options
+" Trigger configuration. I don't use <tab> b/c it conflicts with Valloric/YouCompleteMe.
+let g:UltiSnipsSnippetDirectories=[$HOME.'/.vim/UltiSnips']
+let g:UltiSnipsExpandTrigger='<C-j>'
+" let g:UltiSnipsExpandTriggers=['<C-j>', '<C-Space>']
+let g:UltiSnipsJumpForwardTrigger='<C-j>'
+let g:UltiSnipsJumpBackwardTrigger="<C-k>"
+
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
+
+""""" Optional (i.e. heavyweight) plugins """""
+""" Codefmt
+" Add maktaba and codefmt to the runtimepath. (The latter must be installed
+" before it can be used.)
+"
+" I haven't tried these out yet and am afraid to uncomment them, but they're
+" here as a quick reference
+"
+" Plugin 'google/vim-maktaba'
+" Plugin 'google/vim-codefmt'
+" " Also add Glaive, which is used to configure codefmt's maktaba flags. See
+" " `:help :Glaive` for usage.
+" Plugin 'google/vim-glaive'
+" call glaive#Install()
+
