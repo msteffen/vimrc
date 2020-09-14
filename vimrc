@@ -111,7 +111,16 @@ function! Highlight_silly_ctx_error()
 endfunction
 augroup catch_mismatched_ctx_errors_go
   au!
-  au Filetype go call Highlight_silly_ctx_error()
+  au BufRead /home/mjs/clients/**.go
+        \ echom "In pachyderm go file"
+  au BufRead /home/mjs/clients/**.go
+        \ call Highlight_silly_ctx_error()
+  au BufRead /home/mjs/clients/**.go
+        \| let s:tmp = matchlist(
+        \     expand('%:p'),
+        \     '/home/mjs/clients/\([^/]\+\)/src/github.com/pachyerm')
+        \| if len(s:tmp) > 1 | exe 'silent :GoGuruScope ' . s:tmp[1] | endif
+        \| unlet s:tmp
 augroup END
 
 function! Highlight_pc_kc()

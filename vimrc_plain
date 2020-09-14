@@ -53,6 +53,23 @@ augroup relative_number_in_normal_mode
   au InsertLeave * :set relativenumber
 augroup END
 
+" This is a function I added specifically to help when working on Pachyderm
+" tests. Clients have a context, and often in tests I have to call
+" alice.DoSomething(alice.Ctx(), ...). A common mistake I make in tests is:
+" alice.DoSomething(bob.Ctx(), ...) (typically a copy/paste error). This
+" autocommand catches those types of errors
+function! Highlight_silly_ctx_error()
+  hi Error ctermbg=Red
+  match Error /\(\<[a-z]\w\+\)\.[A-Z]\w\+(\(\1\)\@!\w\+\.Ctx()/
+endfunction
+augroup catch_mismatched_ctx_errors_go
+  au!
+  au BufRead /home/mjs/clients/**.go
+        \ echom "In pachyderm go file"
+  au BufRead /home/mjs/clients/**.go
+        \ call Highlight_silly_ctx_error()
+augroup END
+
 function! Highlight_pc_kc()
   hi Error ctermbg=Red
   match Error /pc\|kc/
