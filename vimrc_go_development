@@ -103,17 +103,19 @@ function! Highlight_silly_ctx_error()
   hi Error ctermbg=Red
   match Error /\(\<[a-z]\w\+\)\.[A-Z]\w\+(\(\1\)\@!\w\+\.Ctx()/
 endfunction
-augroup catch_mismatched_ctx_errors_go
+augroup pachyderm_go_autocmds
   au!
   au BufRead /home/mjs/clients/**.go
-        \ echom "In pachyderm go file"
+        \ echom "In Pachyderm *.go file"
   au BufRead /home/mjs/clients/**.go
         \ call Highlight_silly_ctx_error()
   au BufRead /home/mjs/clients/**.go
-        \| let s:tmp = matchlist(
+        \| let s:tmp = match(
         \     expand('%:p'),
-        \     '/home/mjs/clients/\([^/]\+\)/src/github.com/pachyerm')
-        \| if len(s:tmp) > 1 | exe 'silent :GoGuruScope ' . s:tmp[1] | endif
+        \     '/home/mjs/clients/\([^/]\+\)/src/github.com/pachyderm')
+        \| if s:tmp >= 0
+          \| exe 'silent :GoGuruScope github.com/pachyderm/pachyderm'
+        \| endif
         \| unlet s:tmp
 augroup END
 
