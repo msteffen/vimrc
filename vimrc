@@ -120,7 +120,7 @@ augroup pachyderm_go_autocmds
         \     expand('%:p'),
         \     '/home/mjs/clients/\([^/]\+\)/src/github.com/pachyderm')
         \| if s:tmp >= 0
-          \| exe 'silent :GoGuruScope github.com/pachyderm/pachyderm'
+          \| exe 'silent :GoGuruScope github.com/pachyderm/pachyderm/...'
         \| endif
         \| unlet s:tmp
 augroup END
