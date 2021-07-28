@@ -14,6 +14,9 @@ set mmp=10000 " Avoids bug where syntax highlighting large go files can fail
 set expandtab
 set incsearch
 syntax on
+" Create undodir & configure vim to use it
+silent exec "! test -d ${HOME}/.vim/undodir || mkdir -p ${HOME}/.vim/undodir"
+set undodir=~/.vim/undodir
 
 " Don't unindent comments in python
 " TODO: install pep8 indentation rules for python
