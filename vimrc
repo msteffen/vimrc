@@ -10,6 +10,8 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 " Multiple Cursors
 Plugin 'terryma/vim-multiple-cursors'
+" Undo tree
+Plugin 'mbbill/undotree'
 
 " Surround.vim (surround text with "([{' etc)
 Plugin 'tpope/vim-surround'
@@ -38,6 +40,10 @@ Plugin 'HerringtonDarkholme/yats.vim'
 Plugin 'lervag/vimtex'
 " Plugin for snippets
 Plugin 'SirVer/ultisnips'
+
+" Markdown syntax highlighting
+Plugin 'gabrielelana/vim-markdown'
+
 call vundle#end()
 filetype plugin indent on    " required
                              " To ignore plugin indent changes, instead use:
@@ -65,6 +71,8 @@ set undodir=~/.vim/undodir
 " TODO: install pep8 indentation rules for python
 " See https://stackoverflow.com/questions/2360249/vim-automatically-removes-indentation-on-python-comments#comment12772473_2360284
 au Filetype python inoremap # X<BS>#
+" Set indent to 2 spaces in python
+au Filetype python setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
 
 " Add C-k shortcut for vim-matchup, to show which conditional block you're in
 " in heavily-nested code
@@ -79,7 +87,7 @@ augroup format_on_write
   " Commands executed before writing a buffer to a file.
   " Clean up all trailing whitespace
   " Note: trailing whitespace is meaningful in markdown
-  au BufWritePre .bashrc,*.cc,*.h,*.java,*.py,*.go,*.sh,*.json,*.proto,*.js silent! %s/[ 	]\+$//g
+  au BufWritePre .bashrc,*.cc,*.h,*.java,*.py,*.sh,*.json,*.proto,*.js silent! %s/[ 	]\+$//g
   " This is a good place to put autoformatting
   " For example: `au FileType markdown AutoFormatBuffer mdformat`
 augroup END
@@ -114,18 +122,8 @@ function! Highlight_silly_ctx_error()
 endfunction
 augroup pachyderm_go_autocmds
   au!
-  au BufRead /home/mjs/clients/**.go
-        \ echom "In Pachyderm *.go file"
-  au BufRead /home/mjs/clients/**.go
+  au BufRead /home/mjs/code/**.go
         \ call Highlight_silly_ctx_error()
-  au BufRead /home/mjs/clients/**.go
-        \| let s:tmp = match(
-        \     expand('%:p'),
-        \     '/home/mjs/clients/\([^/]\+\)/src/github.com/pachyderm')
-        \| if s:tmp >= 0
-          \| exe 'silent :GoGuruScope github.com/pachyderm/pachyderm/...'
-        \| endif
-        \| unlet s:tmp
 augroup END
 
 function! Highlight_pc_kc()
@@ -173,7 +171,7 @@ let g:multi_cursor_normal_maps = {
     \ '9':1
     \ }
 
-""" Go options
+""" Go options (place these at the end of the file, after vundle#end())
 " let g:go_fmt_command = "goimports"
 " let g:syntastic_go_checkers = ['go', 'golint', 'govet -composites=false', 'errcheck']
 let g:syntastic_go_checkers = ['golint', 'govet -composites=false', 'errcheck']

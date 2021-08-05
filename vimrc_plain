@@ -22,6 +22,12 @@ set undodir=~/.vim/undodir
 " TODO: install pep8 indentation rules for python
 " See https://stackoverflow.com/questions/2360249/vim-automatically-removes-indentation-on-python-comments#comment12772473_2360284
 au Filetype python inoremap # X<BS>#
+" Set indent to 2 spaces in python
+au Filetype python setlocal expandtab shiftwidth=2 tabstop=2 softtabstop=2
+
+" Add C-k shortcut for vim-matchup, to show which conditional block you're in
+" in heavily-nested code
+nnoremap <c-k> :<c-u>MatchupWhereAmI?<cr>
 
 """ Autocommands and autogroups
 augroup format_on_write
@@ -32,7 +38,7 @@ augroup format_on_write
   " Commands executed before writing a buffer to a file.
   " Clean up all trailing whitespace
   " Note: trailing whitespace is meaningful in markdown
-  au BufWritePre .bashrc,*.cc,*.h,*.java,*.py,*.go,*.sh,*.json,*.proto,*.js silent! %s/[ 	]\+$//g
+  au BufWritePre .bashrc,*.cc,*.h,*.java,*.py,*.sh,*.json,*.proto,*.js silent! %s/[ 	]\+$//g
   " This is a good place to put autoformatting
   " For example: `au FileType markdown AutoFormatBuffer mdformat`
 augroup END
@@ -67,9 +73,7 @@ function! Highlight_silly_ctx_error()
 endfunction
 augroup pachyderm_go_autocmds
   au!
-  au BufRead /home/mjs/clients/**.go
-        \ echom "In Pachyderm *.go file"
-  au BufRead /home/mjs/clients/**.go
+  au BufRead /home/mjs/code/**.go
         \ call Highlight_silly_ctx_error()
 augroup END
 
