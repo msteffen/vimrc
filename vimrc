@@ -62,6 +62,7 @@ set mmp=10000 " Avoids bug where syntax highlighting large go files can fail
 " Replace tabs with spaces -- not always necessary
 set expandtab
 set incsearch
+set nojoinspaces " Only put one space after '.' when joining lines.
 syntax on
 " Create undodir & configure vim to use it
 silent exec "! test -d ${HOME}/.vim/undodir || mkdir -p ${HOME}/.vim/undodir"
