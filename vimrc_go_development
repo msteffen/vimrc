@@ -175,4 +175,4 @@ let g:syntastic_go_checkers = ['golint', 'govet -composites=false', 'errcheck']
 let g:syntastic_check_on_wq = 0  " Normally syntastic checks on writes, but don't check on 'wq'
 let g:go_list_type = "quickfix"
 let g:go_autodetect_gopath = 0 " For some reason, if I don't set this, my GOPATH is modified and imports fail to resolve
-let g:go_build_tags = 'unit_test' " Used by some projects' unit tests (so you don't waste time building tests for prod builds)
+let g:go_build_tags = 'unit_test k8s server' " Used by some projects' unit tests (so you don't waste time building tests for prod builds)
