@@ -28,14 +28,20 @@ Plugin 'vim-airline/vim-airline'
 " Go extentions
 Plugin 'fatih/vim-go'
 " YouCompleteMe (autocomplete)
-Plugin 'Valloric/YouCompleteMe'
+Plugin 'ycm-core/YouCompleteMe'
 " Syntastic: error highlighting
 " Plugin 'vim-syntastic/syntastic'
 
 " For matching parentheses I think?
 Plugin 'andymass/vim-matchup'
+" Typescript syntax highlighting
+" Plugin 'HerringtonDarkholme/yats.vim'
+" Plugin for editing latex
+Plugin 'lervag/vimtex'
 " Plugin for snippets
 Plugin 'SirVer/ultisnips'
+" Built-in snippets for UltiSnips
+Plugin 'honza/vim-snippets'
 
 " Markdown syntax highlighting
 Plugin 'gabrielelana/vim-markdown'
@@ -59,6 +65,7 @@ set mmp=10000 " Avoids bug where syntax highlighting large go files can fail
 set expandtab
 set incsearch
 set nojoinspaces " Only put one space after '.' when joining lines.
+
 syntax on
 " Create undodir & configure vim to use it
 silent exec "! test -d ${HOME}/.vim/undodir || mkdir -p ${HOME}/.vim/undodir"
@@ -176,3 +183,8 @@ let g:syntastic_check_on_wq = 0  " Normally syntastic checks on writes, but don'
 let g:go_list_type = "quickfix"
 let g:go_autodetect_gopath = 0 " For some reason, if I don't set this, my GOPATH is modified and imports fail to resolve
 let g:go_build_tags = 'unit_test k8s server' " Used by some projects' unit tests (so you don't waste time building tests for prod builds)
+let g:go_def_mode = 'gopls'
+let g:go_info_mode = 'gopls'
+" See :h g:go_debug. This can help debug weird vim-go errors
+" let g:go_debug=['shell-commands', 'lsp']
+

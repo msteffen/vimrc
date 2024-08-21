@@ -14,6 +14,7 @@ set mmp=10000 " Avoids bug where syntax highlighting large go files can fail
 set expandtab
 set incsearch
 set nojoinspaces " Only put one space after '.' when joining lines.
+
 syntax on
 " Create undodir & configure vim to use it
 silent exec "! test -d ${HOME}/.vim/undodir || mkdir -p ${HOME}/.vim/undodir"
@@ -89,7 +90,8 @@ augroup END
 
 hi ColorColumn ctermbg=Gray ctermfg=Black guibg=gray9
 
-""" Search and highlighting
+" Fix syntastic coloring that blends in with my highlight
+" http://stackoverflow.com/questions/17677441/changing-error-highlight-color-used-by-syntasti
 hi SpellBad ctermfg=Black ctermbg=Red
 hi SpellCap ctermfg=Black ctermbg=Yellow
 

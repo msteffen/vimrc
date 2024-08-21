@@ -28,18 +28,20 @@ Plugin 'vim-airline/vim-airline'
 " Go extentions
 Plugin 'fatih/vim-go'
 " YouCompleteMe (autocomplete)
-Plugin 'Valloric/YouCompleteMe'
+Plugin 'ycm-core/YouCompleteMe'
 " Syntastic: error highlighting
 " Plugin 'vim-syntastic/syntastic'
 
 " For matching parentheses I think?
 Plugin 'andymass/vim-matchup'
 " Typescript syntax highlighting
-Plugin 'HerringtonDarkholme/yats.vim'
+" Plugin 'HerringtonDarkholme/yats.vim'
 " Plugin for editing latex
 Plugin 'lervag/vimtex'
 " Plugin for snippets
 Plugin 'SirVer/ultisnips'
+" Built-in snippets for UltiSnips
+Plugin 'honza/vim-snippets'
 
 " Markdown syntax highlighting
 Plugin 'gabrielelana/vim-markdown'
@@ -180,17 +182,22 @@ let g:syntastic_check_on_wq = 0  " Normally syntastic checks on writes, but don'
 let g:go_list_type = "quickfix"
 let g:go_autodetect_gopath = 0 " For some reason, if I don't set this, my GOPATH is modified and imports fail to resolve
 let g:go_build_tags = 'unit_test k8s server' " Used by some projects' unit tests (so you don't waste time building tests for prod builds)
+let g:go_def_mode = 'gopls'
+let g:go_info_mode = 'gopls'
+" See :h g:go_debug. This can help debug weird vim-go errors
+" let g:go_debug=['shell-commands', 'lsp']
 
 """ LaTeX options
 let g:tex_flavor='latex'
 let g:vimtex_view_method='zathura'
 let g:vimtex_quickfix_mode=0
-set conceallevel=1
 let g:tex_conceal='abdmg'
+" set conceallevel=2
 
 """ Ultisnips options
 " Trigger configuration. I don't use <tab> b/c it conflicts with Valloric/YouCompleteMe.
 let g:UltiSnipsSnippetDirectories=[$HOME.'/.vim/UltiSnips']
+let g:UltiSnipsListSnippets='<C-h>'
 let g:UltiSnipsExpandTrigger='<C-j>'
 " let g:UltiSnipsExpandTriggers=['<C-j>', '<C-Space>']
 let g:UltiSnipsJumpForwardTrigger='<C-j>'
