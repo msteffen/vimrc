@@ -39,9 +39,13 @@ By default, YouCompleteMe isn't installed by my .vimrc file (the "Plugin" line f
     $ sudo apt update && sudo apt install -y build-essential cmake python-dev python3-dev
     
     # Install build tools (only necessary in a fresh VM with no build tools)
-    # omit --clang-completer if you don't care about C/C++ completion
-    # omit --go-completer if you don't care about Go completion
-    $ ( cd ~/.vim/bundle/YouCompleteMe && ./install.py --clang-completer --go-completer)
+    # - Add --clang-completer if you don't care about C/C++ completion
+    # - Omit --go-completer if you don't care about Go completion
+    # - Omit --ts-completer if you don't care about Typescript completion
+    $ ( cd ~/.vim/bundle/YouCompleteMe && ./install.py \
+      --go-completer \
+      --ts-completer
+    ) 
 
 ### Cleanup
 Just open vim and run `:PluginClean`. See `:help vundle` for more options (run `:PluginList` to see current plugins)
