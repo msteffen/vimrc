@@ -1,6 +1,7 @@
 #!/bin/bash
 
-which git || { sudo apt install git; }
+# Install YCM deps (from https://github.com/ycm-core/YouCompleteMe#installation)
+sudo apt install -y build-essential cmake vim-nox python3-dev git
 
 # Copy Vundle & create YCM directory
 config="${1:-vimrc}"
