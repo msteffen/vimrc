@@ -1,7 +1,10 @@
 #!/bin/bash
 
-# Install YCM deps (from https://github.com/ycm-core/YouCompleteMe#installation)
-sudo apt install -y build-essential cmake vim-nox python3-dev git
+# Install vim-nox (vim + support for scripting languages)
+which vim || { sudo apt install -y vim-nox; }
+
+# Install git (required by Vundle)
+which git || { sudo apt install -y git; }
 
 # Copy Vundle & create YCM directory
 config="${1:-vimrc}"
@@ -13,6 +16,10 @@ echo "Installing plugins..."
 vim -c ":PluginInstall" -c ":GoInstallBinaries" -c ":qa"
 
 if [[ "${config}" =~ vimrc|vimrc_go_development ]]; then
+  #  From https://github.com/ycm-core/YouCompleteMe#installation
+  echo "Installing YCM deps"
+  sudo apt install -y build-essential cmake python3-dev
+  
   echo "Compiling YouCompleteMe with --go-completer and --ts-completer"
   echo "(but not --clang-completer for C++)"
   cd ~/.vim/bundle/YouCompleteMe
