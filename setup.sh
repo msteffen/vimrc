@@ -20,10 +20,10 @@ if [[ "${config}" =~ vimrc|vimrc_go_development ]]; then
   echo "Installing YCM deps"
   sudo apt install -y build-essential cmake python3-dev
   
-  echo "Compiling YouCompleteMe with --go-completer and --ts-completer"
-  echo "(but not --clang-completer for C++)"
+  echo "Compiling YouCompleteMe with --go-completer and --python-completer"
+  echo "(but not --ts-completer for TypeScript or --clang-completer for C++)"
   cd ~/.vim/bundle/YouCompleteMe
-  python3 ./install.py --go-completer --ts-completer
+  python3 ./install.py --go-completer --python-completer
   cd -
 else
   echo "See https://github.com/msteffen/vimrc/blob/master/README.md if you want to set up YouCompleteMe as well"
