@@ -52,7 +52,7 @@ filetype plugin indent on    " required
                              " `filetype plugin on`
 
 """ General options
-colorscheme ron
+" colorscheme ron - commented b/c I prefer 'default' these days
 set smartindent
 set ai
 set tabstop=2

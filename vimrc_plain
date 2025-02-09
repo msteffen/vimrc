@@ -1,7 +1,7 @@
 """ Like my regular vimrc, but with no plugins
 
 """ General options
-colorscheme ron
+" colorscheme ron - commented b/c I prefer 'default' these days
 set smartindent
 set ai
 set tabstop=2
