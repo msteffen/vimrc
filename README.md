@@ -41,12 +41,12 @@ By default, YouCompleteMe isn't installed by my .vimrc file (the "Plugin" line f
     # echo "on arch:"
     # echo "sudo pacman -Syu clang make cmake python"
     # Install build tools (only necessary in a fresh VM with no build tools)
-    # - Add --clang-completer if you don't care about C/C++ completion
+    # - Add --clang-completer if you care about C/C++ completion
+    # - Add --ts-completer if you care about Typescript completion
+    # - See also --rust-completer and others
     # - Omit --go-completer if you don't care about Go completion
-    # - Omit --ts-completer if you don't care about Typescript completion
     $ ( cd ~/.vim/bundle/YouCompleteMe && ./install.py \
-      --go-completer \
-      --ts-completer
+      --go-completer
     ) 
 
 ### Cleanup
