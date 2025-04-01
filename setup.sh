@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/zsh
 
 # Install vim-nox (vim + support for scripting languages)
 which vim || { sudo apt install -y vim-nox; }
